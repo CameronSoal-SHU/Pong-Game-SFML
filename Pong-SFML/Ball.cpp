@@ -2,7 +2,7 @@
 #include "Player.h"
 
 
-Ball::Ball()
+Ball::Ball()	// Call base constructor
 	: GameObject::GameObject(), m_lastTouchedPlayer(nullptr)
 {}
 

@@ -96,7 +96,3 @@ void GameObject::SetVelocity(const sf::Vector2<float>& _newVel) {
 Collider & GameObject::GetCollider() {
 	return m_collider;
 }
-
-
-GameObject::~GameObject() {
-}

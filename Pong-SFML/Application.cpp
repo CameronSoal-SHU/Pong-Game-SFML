@@ -1,6 +1,6 @@
 #include "Application.h"
 
-// Forward declarations
+// Static member variables
 sf::Clock Time::m_clock;
 float Time::m_deltaTime;
 

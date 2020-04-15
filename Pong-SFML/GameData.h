@@ -43,14 +43,8 @@ used across the program
 */
 struct GameData {
 	sf::RenderWindow* ptrRenderWindow;
-	std::string assetsPath;
+	std::string assetsPath; // File Path for assets folder
 	sf::Font dSansFont;		// DroidSans
 	sf::Font digitalFont;	// Digital-7
 	sf::Font bebasFont;		// Bebas-Regular
 };
-
-/*
-Modifyable game settings used in-game
-*/
-struct GameSettings
-{};

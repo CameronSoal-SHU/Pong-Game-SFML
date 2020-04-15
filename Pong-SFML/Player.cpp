@@ -10,10 +10,6 @@ Player::Player(GameData* _gameData)
 	: GameObject::GameObject(_gameData)	// Call base constructor and pass reference for use
 {}
 
-void Player::SetGameData(GameData * _gameData) {
-	GameObject::SetGameData(_gameData);
-}
-
 void Player::Update() {
 	GameObject::Update();	// Call base method
 }
@@ -36,8 +32,4 @@ int Player::GetScore() const {
 
 void Player::SetScore(int _score) {
 	m_playerScore = _score;
-}
-
-sf::Color Player::GetColour() const {
-	return m_sprite.getColor();
 }

@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include <stdio.h>
 
-// Forward declaration(s)
+// Static member variables
 GameManager::game_state m_gameState;
 
 

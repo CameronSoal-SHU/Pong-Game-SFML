@@ -3,9 +3,8 @@
 
 #include <cassert>
 
-// Forward declaration(s)
+// Static member variables
 GameManager::game_state GameManager::gameState;
-GameSettings MainGame::gameSettings;
 
 
 MainGame::MainGame(sf::RenderWindow& renWin) 
@@ -28,13 +27,14 @@ GameData & MainGame::GetGameData() {
 	return m_gameData;
 }
 
-// TODO: Create winning and losing screens and allow the player to play again or quit whenever
+
 void MainGame::Update() {
 	switch (GameManager::GetInstance().gameState) {
 	case GameManager::game_state::TITLE:
 		m_titleScreen.Update();
 		break;
 	case GameManager::game_state::PRE_SERVE:
+		// When player presses "Space", serve the ball and begin the game
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 			GameManager::GetInstance().OnStateChange(GameManager::game_state::PLAY);
 			m_playMode.ServeBall();

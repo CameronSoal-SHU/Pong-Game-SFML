@@ -5,10 +5,6 @@
 
 TitleScreen::TitleScreen(MainGame & _mainGame) 
 	: m_mainGame(_mainGame), m_startGameColour(sf::Color::White) {
-	Start();
-}
-
-void TitleScreen::Start() {
 	// Set up title screen text
 	m_titleScreenText = sf::Text("PONG", m_mainGame.GetGameData().bebasFont, 256U);
 	m_titleScreenText.setPosition(GameConstants::SCREEN_RES_X / 2.f, 200.f);
@@ -28,6 +24,7 @@ void TitleScreen::Start() {
 	m_players[0].setTextureRect({ 0, 0, 63, 531 });
 	m_players[1].setTextureRect({ 96, 0, 63, 531 });
 
+	// Set up "player" sprites and positioning on title screen
 	for (unsigned i(0); i < 2; ++i) {
 		sf::Sprite& player = m_players[i];
 
@@ -37,11 +34,13 @@ void TitleScreen::Start() {
 		player.setScale({ 0.5f, 0.5f });
 	}
 
+	// Unique colours for players
 	m_players[0].setColor(sf::Color::Blue);
 	m_players[1].setColor(sf::Color::Red);
 }
 
 void TitleScreen::Update() {
+	// Centre title screen and start game text
 	m_titleScreenText.setOrigin(m_titleScreenText.getLocalBounds().width / 2,
 		m_titleScreenText.getLocalBounds().height / 2);
 	m_startGameText.setOrigin(m_startGameText.getLocalBounds().width / 2,
@@ -49,6 +48,7 @@ void TitleScreen::Update() {
 
 	CycleStartTextColour();
 
+	// Start game when player presses "Enter"
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		GameManager::GetInstance().OnStateChange(GameManager::game_state::PRE_SERVE);
 }
@@ -63,6 +63,7 @@ void TitleScreen::Render() {
 	}
 }
 
+// Cycle through RGB values of the title screen
 void TitleScreen::CycleStartTextColour() {
 	if (m_delayRemaining <= 0.f) {
 		m_delayRemaining = m_colourScrollRate;
@@ -93,5 +94,6 @@ void TitleScreen::CycleStartTextColour() {
 	else
 		m_delayRemaining -= Time::GetDeltaTime();
 
+	// Commit colour change
 	m_startGameText.setFillColor(m_startGameColour);
 }

@@ -12,6 +12,13 @@ int sign(T _val) {
 class Collider;
 class GameObject;
 
+/*
+Structure to hold collision information
+Where the collision happened,
+What was collided with,
+How much intersection is there?
+etc.
+*/
 struct Hit {
 	Collider* collider;				
 	sf::Vector2<float> position;	// Point of contact between 2 objects
@@ -26,28 +33,29 @@ struct Hit {
 
 class Collider {
 public:
+	// Methods to set the collider information
 	Collider();
-	Collider(sf::Vector2<float> _pos, sf::Vector2<float> _radius, const std::string& _colName);
-	Collider(const sf::Sprite& _sprite, const std::string& _colName);
-	Collider(const GameObject& _gameObject, const std::string& _colName);
+	// Setup collider with a position and radius
+	Collider(sf::Vector2<float> _pos, sf::Vector2<float> _radius);
+	// Set up collider with sprite information
+	Collider(const sf::Sprite& _sprite);
+	// Set up collider with gameobject information
+	Collider(const GameObject& _gameObject);
 
+	// Public accessors
 	sf::Vector2<float> GetPosition() const;
 	void SetPosition(const sf::Vector2<float> _pos);
 
 	sf::Vector2<float> GetRadius() const;
 	void SetRadius(const sf::Vector2<float>& _radius);
 
-	std::string GetColName() const;
-	void SetColName(const std::string& _colName);
-
+	// Check if there is a collision with another collider
 	Hit IntersectCollider(const Collider& _collider);
 	bool Collision() const;			// Was there a collision?
-	Hit& GetHit();
+	Hit& GetHit();					// Get collision information
 private:
 	sf::Vector2<float> m_pos;
 	sf::Vector2<float> m_radius;
 
 	Hit m_hit = nullptr;
-
-	std::string m_colliderName;
 };

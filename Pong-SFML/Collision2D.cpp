@@ -15,17 +15,17 @@ Collider::Collider()
 	: m_pos(0.f,0.f), m_radius(0.f,0.f)
 {}
 
-Collider::Collider(sf::Vector2<float> _pos, sf::Vector2<float> _radius, const std::string& _colName)
-	: m_pos(_pos), m_radius(_radius), m_colliderName(_colName)
+Collider::Collider(sf::Vector2<float> _pos, sf::Vector2<float> _radius)
+	: m_pos(_pos), m_radius(_radius)
 {}
 
-Collider::Collider(const sf::Sprite & _sprite, const std::string& _colName)
+Collider::Collider(const sf::Sprite& _sprite)
 	: Collider(_sprite.getPosition(), 
-		{ _sprite.getLocalBounds().width / 2.f, _sprite.getLocalBounds().height / 2.f }, _colName)
+		{ _sprite.getLocalBounds().width / 2.f, _sprite.getLocalBounds().height / 2.f })
 {}
 
-Collider::Collider(const GameObject & _gameObject, const std::string& _colName)
-	: Collider(_gameObject.GetPosition(), _gameObject.GetDimensions() / 2.f, _colName)
+Collider::Collider(const GameObject& _gameObject)
+	: Collider(_gameObject.GetPosition(), _gameObject.GetDimensions() / 2.f)
 {}
 
 sf::Vector2<float> Collider::GetPosition() const {
@@ -42,14 +42,6 @@ sf::Vector2<float> Collider::GetRadius() const {
 
 void Collider::SetRadius(const sf::Vector2<float>& _radius) {
 	m_radius = _radius;
-}
-
-std::string Collider::GetColName() const {
-	return m_colliderName;
-}
-
-void Collider::SetColName(const std::string & _colName) {
-	m_colliderName = _colName;
 }
 
 Hit Collider::IntersectCollider(const Collider & _collider) {
@@ -74,6 +66,7 @@ Hit Collider::IntersectCollider(const Collider & _collider) {
 	// Collision found!
 	Hit hit = Hit(this);
 
+	// Set a delta if the hitboxes are intersecting
 	if (pointX < pointY) {
 		const float signX = (float)sign(deltaX);
 
@@ -99,7 +92,6 @@ bool Collider::Collision() const {
 	return m_hit.collider != nullptr;
 }
 
-Hit& Collider::GetHit()
-{
+Hit& Collider::GetHit() {
 	return m_hit;
 }

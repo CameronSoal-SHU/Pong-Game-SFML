@@ -10,5 +10,6 @@ public:
 
 	// Generate a random unsigned integer between 2 optional given bounds
 	static unsigned GenerateRandomUnsigned(unsigned min = 0, unsigned max = 0xffffffff);
+	// Generate a random integer between 2 optional given bounds
 	static int GenerateRandomInt(int min, int max);
 };

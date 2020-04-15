@@ -31,7 +31,6 @@ public:
 	void TextEntered(sf::Uint32 input);
 
 	/* Holds game settings to be used by the game, e.g. payout amounts */
-	static GameSettings gameSettings;
 	GameData& GetGameData();
 private:
 	/* Default position for rendering digital text on screen */
