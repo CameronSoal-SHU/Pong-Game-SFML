@@ -1,19 +1,12 @@
 #include "GameManager.h"
-
 #include <stdio.h>
 
 // Forward declaration(s)
 GameManager::game_state m_gameState;
 
-//GameManager::GameManager()
-//	: m_mainGamePtr(nullptr)
-//{
-//	OnStateChange(INIT);
-//	printf_s("Game Initialised!\n");
-//}
 
 void GameManager::Init() {
-	OnStateChange(DISPLAY_CLOCKS);
+	OnStateChange(game_state::TITLE);
 }
 
 void GameManager::OnStateChange(GameManager::game_state newState) {
@@ -21,17 +14,14 @@ void GameManager::OnStateChange(GameManager::game_state newState) {
 		printf_s("State changed to: ");
 
 		switch (newState) {
-		case INIT:
-			printf_s("Init!\n");
+		case game_state::TITLE:
+			printf_s("Title!\n");
 			break;
-		case DISPLAY_CLOCKS:
-			printf_s("Display Clocks!\n");
+		case game_state::PRE_SERVE:
+			printf_s("Pre-Serve!\n");
 			break;
-		case GUESS_CORRECT:
-			printf_s("Guess Correct!\n");
-			break;
-		case GUESS_INCORRECT:
-			printf_s("Guess Incorrect!\n");
+		case game_state::PLAY:
+			printf_s("Play!\n");
 			break;
 		default:
 			printf_s("UNKNOWN!\n");

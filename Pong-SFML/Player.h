@@ -1,19 +1,28 @@
 #pragma once
-#include <string>
+#include "GameObject.h"
 
 /*
 Class to hold data about the players play session,
-holds the players score to be displayed and stored
+holds the players score, sprites and collision
 */
-class Player {
+class Player : public GameObject {
 public:
-	/* Initialise the players balance and rolls to 0 */
 	Player();
+	Player(GameData* _gameData);
 
-	/* Getters and Setters */
-	unsigned GetPlayerScore() const;
-	void SetPlayerScore(unsigned newBalance);
+	void SetGameData(GameData* _gameData);
 
+	void Update();
+	void Render();
+
+	sf::Vector2<float> GetPlayerSpeed() const;
+	void SetPlayerSpeed(const sf::Vector2<float>& _newSpeed);
+
+	int GetScore() const;
+	void SetScore(int _score);
+
+	sf::Color GetColour() const;
 private:
-	unsigned m_playerScore;	// How many clock guesses the player got correct
+	int m_playerScore = 0;
+	sf::Vector2<float> m_playerSpeed;
 };

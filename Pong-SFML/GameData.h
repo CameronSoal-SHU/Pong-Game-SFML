@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include <string>
 
 /*
 List of constant "Magic Numbers" used for the game
@@ -28,8 +29,12 @@ namespace GameConstants {
 	const char NUM_MIN{ 48 };
 	const char NUM_MAX{ 57 };
 
-	// Number of clocks to select from (not incl. analogue)
-	const unsigned CLOCK_COUNT{ 3 };
+	const sf::Keyboard::Key P1_UP{ sf::Keyboard::W };
+	const sf::Keyboard::Key P1_DOWN{ sf::Keyboard::S };
+	const sf::Keyboard::Key P2_UP{ sf::Keyboard::Up };
+	const sf::Keyboard::Key P2_DOWN{ sf::Keyboard::Down };
+
+	const int MAX_PLAYERS{ 2 };
 }
 
 /*
@@ -37,9 +42,11 @@ Hold public references to data
 used across the program
 */
 struct GameData {
-	static sf::RenderWindow* ptrRenderWindow;
-	static sf::Font dSansFont;		// DroidSans
-	static sf::Font digitalFont;	// Digital-7
+	sf::RenderWindow* ptrRenderWindow;
+	std::string assetsPath;
+	sf::Font dSansFont;		// DroidSans
+	sf::Font digitalFont;	// Digital-7
+	sf::Font bebasFont;		// Bebas-Regular
 };
 
 /*

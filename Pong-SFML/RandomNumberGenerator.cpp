@@ -15,7 +15,14 @@ void RandomNumberGenerator::GenerateSeed(unsigned seed) {
 }
 
 unsigned RandomNumberGenerator::GenerateRandomUnsigned(unsigned minValue, unsigned maxValue) {
-	unsigned intGenerated = (rand() % maxValue) + minValue;
+	unsigned uIntGenerated = (rand() % maxValue) + minValue;
+	printf_s("Unsigned Generated: %u\n", uIntGenerated);
+
+	return uIntGenerated;	// returns value between 0 and maxValue
+}
+
+int RandomNumberGenerator::GenerateRandomInt(int min, int max) {
+	unsigned intGenerated = (rand() % max) + min;
 	printf_s("Integer Generated: %u\n", intGenerated);
 
 	return intGenerated;	// returns value between 0 and maxValue

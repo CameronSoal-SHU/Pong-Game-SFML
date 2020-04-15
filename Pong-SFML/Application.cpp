@@ -6,9 +6,9 @@ float Time::m_deltaTime;
 
 
 Application::Application()
-	: m_renderWindow(sf::VideoMode(GameConstants::SCREEN_RES_X, GameConstants::SCREEN_RES_Y), "PONG Game") {
+	: m_renderWindow(sf::VideoMode(GameConstants::SCREEN_RES_X, GameConstants::SCREEN_RES_Y), "PONG Game"),
+	m_mainGame(m_renderWindow) {
 	RandomNumberGenerator::GenerateSeed();	// Seed for random values
-	m_mainGame = MainGame(m_renderWindow);
 }
 
 void Application::Run() {
@@ -22,9 +22,6 @@ void Application::Run() {
 			if (event.type == sf::Event::TextEntered) {
 				if (event.text.unicode == GameConstants::ESCAPE_KEY) 
 					m_renderWindow.close();
-				// Check if ASCII char was typed
-				if (event.text.unicode < GameConstants::ASCII_LIMIT)
-					m_mainGame.TextEntered(event.text.unicode);	// Store the input taken
 			}
 		}
 
