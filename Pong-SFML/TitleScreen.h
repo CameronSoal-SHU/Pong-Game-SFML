@@ -11,14 +11,11 @@ Title screen object to be shown to player on start up
 class TitleScreen
 {
 public:
-	TitleScreen(MainGame& _mainGame);
+	TitleScreen(GameData& _gameData);
 
 	void Update();
-	void Render();
+	void Render(GameData& _gameData);
 private:
-	// Holds reference to main game object
-	MainGame& m_mainGame;
-
 	// Player sprites for decoration on title screen (has no interactivity)
 	sf::Sprite m_players[2];
 	sf::Texture m_playerTexture;

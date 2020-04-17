@@ -3,19 +3,19 @@
 #include <cassert>
 #include <iostream>
 
-TitleScreen::TitleScreen(MainGame & _mainGame) 
-	: m_mainGame(_mainGame), m_startGameColour(sf::Color::White) {
+TitleScreen::TitleScreen(GameData & _gameData) 
+	: m_startGameColour(sf::Color::White) {
 	// Set up title screen text
-	m_titleScreenText = sf::Text("PONG", m_mainGame.GetGameData().bebasFont, 256U);
+	m_titleScreenText = sf::Text("PONG", _gameData.bebasFont, 256U);
 	m_titleScreenText.setPosition(GameConstants::SCREEN_RES_X / 2.f, 200.f);
 
 	// Set up start game instruction text
-	m_startGameText = sf::Text("Press [ENTER] To Play!", m_mainGame.GetGameData().bebasFont, 36U);
+	m_startGameText = sf::Text("Press [ENTER] To Play!", _gameData.bebasFont, 36U);
 	m_startGameText.setPosition(GameConstants::SCREEN_RES_X / 2.f, 500.f);
 
 	// Set up controls text
 	m_controlsText = sf::Text("Controls\nPlayer 1 (Blue): W = Up | S = Down\nPlayer 2 (Red): Arrow Up = Up | Arrow Down = Down",
-		m_mainGame.GetGameData().bebasFont, 36U);
+		_gameData.bebasFont, 36U);
 	m_controlsText.setPosition({ 200.f, 700.f });
 
 	assert(m_playerTexture.loadFromFile("../Assets/Textures/PaddleBallSprites.png"));
@@ -53,13 +53,13 @@ void TitleScreen::Update() {
 		GameManager::GetInstance().OnStateChange(GameManager::game_state::PRE_SERVE);
 }
 
-void TitleScreen::Render() {
-	m_mainGame.GetGameData().ptrRenderWindow->draw(m_titleScreenText);
-	m_mainGame.GetGameData().ptrRenderWindow->draw(m_startGameText);
-	m_mainGame.GetGameData().ptrRenderWindow->draw(m_controlsText);
+void TitleScreen::Render(GameData& _gameData) {
+	_gameData.ptrRenderWindow->draw(m_titleScreenText);
+	_gameData.ptrRenderWindow->draw(m_startGameText);
+	_gameData.ptrRenderWindow->draw(m_controlsText);
 
 	for (sf::Sprite& player : m_players) {
-		m_mainGame.GetGameData().ptrRenderWindow->draw(player);
+		_gameData.ptrRenderWindow->draw(player);
 	}
 }
 

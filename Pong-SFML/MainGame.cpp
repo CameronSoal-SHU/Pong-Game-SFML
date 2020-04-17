@@ -8,7 +8,7 @@ GameManager::game_state GameManager::gameState;
 
 
 MainGame::MainGame(sf::RenderWindow& renWin) 
-	:m_titleScreen(*this), m_playMode(*this) {
+	: m_titleScreen(m_gameData), m_playMode(*this) {
 	m_gameData.ptrRenderWindow = &renWin;		// Set the reference of the render window
 												// Attempt to load the fonts
 	assert(m_gameData.dSansFont.loadFromFile("../Assets/Fonts/DroidSans.ttf"));
@@ -16,6 +16,7 @@ MainGame::MainGame(sf::RenderWindow& renWin)
 	assert(m_gameData.bebasFont.loadFromFile("../Assets/Fonts/Bebas-Regular.otf"));
 
 	GameManager::GetInstance().Init();		// Setup GameManager
+	m_playMode.Init();
 }
 
 void MainGame::TextEntered(sf::Uint32 input) {
@@ -51,7 +52,7 @@ void MainGame::Update() {
 void MainGame::Render() {
 	switch (GameManager::GetInstance().gameState) {
 	case GameManager::game_state::TITLE:
-		m_titleScreen.Render();
+		m_titleScreen.Render(m_gameData);
 		break;
 	case GameManager::game_state::PRE_SERVE:
 	case GameManager::game_state::PLAY:

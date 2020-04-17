@@ -7,11 +7,11 @@ Ball::Ball()	// Call base constructor
 {}
 
 
-void Ball::SetLastTouched(Player* _player) {
-	m_lastTouchedPlayer = _player;
+void Ball::SetLastTouched(GameObject* _gameObj) {
+	m_lastTouchedPlayer = _gameObj;
 }
 
-Player* Ball::GetLastTouched() {
+GameObject* Ball::GetLastTouched() {
 	return m_lastTouchedPlayer;
 }
 

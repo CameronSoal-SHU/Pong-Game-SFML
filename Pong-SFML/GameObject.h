@@ -8,7 +8,7 @@
 #define NO_APPEND_PATH false
 
 /*
-Base GameObject class to be used for objects in-game
+GameObject class to be used for objects in-game
 which can have a sprite, collision, etc.
 Can be inherited by other classes such as Player to be extended
 */
@@ -16,16 +16,14 @@ class GameObject
 {
 public:
 	GameObject();
-	GameObject(GameData* _gameData);
-	
-	void SetGameData(GameData* _gameData);
+	virtual ~GameObject() {};
 
 	virtual void Update();
-	void Render();
+	void Render(GameData& _gameData);
 
 	// Setters for the GameObjects textures
-	void SetTexture(const std::string& _filePath, bool _appendPath);
-	void SetTexture(const std::string& _filePath, bool _appendPath, const sf::Rect<int>& _textureRect);
+	void SetTexture(GameData& _gameData, const std::string& _filePath, bool _appendPath);
+	void SetTexture(GameData& _gameData, const std::string& _filePath, bool _appendPath, const sf::Rect<int>& _textureRect);
 
 	// Public accessors for sprite methods
 	sf::Color GetColour() const;
@@ -50,10 +48,14 @@ public:
 	sf::Vector2<float> GetDimensions() const;
 
 	// Getter for collider
-	Collider& GetCollider();
+	AABB& GetCollider();
+	// Set collider with a position and radius
+	void SetCollider(sf::Vector2<float> _pos, sf::Vector2<float> _radius);
+	// Set up collider with sprite information
+	void SetCollider(const sf::Sprite& _sprite);
+	// Set up collider with gameobject information
+	void SetCollider(const GameObject& _gameObject);
 protected:
-	GameData* m_gameData;
-
 	/* GameObject sprite and texture information */
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
@@ -61,6 +63,6 @@ protected:
 	sf::Vector2<float> m_vel;
 
 	/* Collision detection */
-	Collider m_collider;
+	AABB m_collider;
 };
 

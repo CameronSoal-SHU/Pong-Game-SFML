@@ -22,7 +22,7 @@ unsigned RandomNumberGenerator::GenerateRandomUnsigned(unsigned minValue, unsign
 }
 
 int RandomNumberGenerator::GenerateRandomInt(int minValue, int maxValue) {
-	unsigned intGenerated = (rand() % maxValue) + minValue;
+	int intGenerated = (rand() % maxValue) + minValue;
 	printf_s("Integer Generated: %u\n", intGenerated);
 
 	return intGenerated;	// returns value between 0 and maxValue

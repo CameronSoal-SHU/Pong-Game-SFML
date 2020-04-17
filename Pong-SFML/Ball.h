@@ -13,9 +13,9 @@ public:
 	Ball();
 
 	// Public accessors 
-	void SetLastTouched(Player* _player);
-	Player* GetLastTouched();
+	void SetLastTouched(GameObject* _player);
+	GameObject* GetLastTouched();
 private:
-	Player* m_lastTouchedPlayer;	// Store the last player the ball interacted with
+	GameObject* m_lastTouchedPlayer;	// Store the last player the ball interacted with
 };
 

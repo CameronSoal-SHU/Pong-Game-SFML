@@ -3,19 +3,15 @@
 
 
 Player::Player()
-	: GameObject::GameObject()
-{}
-
-Player::Player(GameData* _gameData)
-	: GameObject::GameObject(_gameData)	// Call base constructor and pass reference for use
-{}
+	: GameObject::GameObject() {
+}
 
 void Player::Update() {
 	GameObject::Update();	// Call base method
 }
 
-void Player::Render() {
-	GameObject::Render();	// Call base method
+void Player::Render(GameData& _gameData) {
+	GameObject::Render(_gameData);	// Call base method
 }
 
 sf::Vector2<float> Player::GetPlayerSpeed() const {

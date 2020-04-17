@@ -9,10 +9,9 @@ Inherits base GameObject class
 class Player : public GameObject {
 public:
 	Player();
-	Player(GameData* _gameData);
 
 	void Update();
-	void Render();
+	void Render(GameData& _gameData);
 
 	// Public accessors for player speed
 	sf::Vector2<float> GetPlayerSpeed() const;

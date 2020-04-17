@@ -2,33 +2,25 @@
 #include "Time.h"
 #include <cassert>
 
+
 GameObject::GameObject()
-	: m_gameData(nullptr)
 {}
-
-GameObject::GameObject(GameData*  _gameData) 
-	: m_gameData(_gameData)
-{}
-
-void GameObject::SetGameData(GameData * _gameData) {
-	m_gameData = _gameData;
-}
 
 void GameObject::Update() {
 	// Apply velocity every frame
 	SetPosition(GetPosition() + (m_vel * Time::GetDeltaTime()));
 }
 
-void GameObject::Render() {
-	assert(&m_gameData);
+void GameObject::Render(GameData& _gameData) {
+	assert(&_gameData);
 
-	m_gameData->ptrRenderWindow->draw(m_sprite);
+	_gameData.ptrRenderWindow->draw(m_sprite);
 }
 
-void GameObject::SetTexture(const std::string& _filePath, bool _appendPath) {
+void GameObject::SetTexture(GameData& _gameData, const std::string& _filePath, bool _appendPath) {
 	std::string texturePath;
 	if (_appendPath)
-		texturePath += m_gameData->assetsPath;
+		texturePath += _gameData.assetsPath;
 	texturePath += _filePath;
 
 	// Load texture from file and set the sprite
@@ -37,9 +29,9 @@ void GameObject::SetTexture(const std::string& _filePath, bool _appendPath) {
 	m_sprite.setScale(1.f, 1.f);
 }
 
-void GameObject::SetTexture(const std::string & _filePath, 
+void GameObject::SetTexture(GameData& _gameData, const std::string & _filePath,
 	bool _appendPath, const sf::Rect<int>& _textureRect) {
-	SetTexture(_filePath, _appendPath);
+	SetTexture(_gameData, _filePath, _appendPath);
 	m_sprite.setTextureRect(_textureRect);
 }
 
@@ -93,6 +85,18 @@ void GameObject::SetVelocity(const sf::Vector2<float>& _newVel) {
 	m_vel = _newVel;
 }
 
-Collider & GameObject::GetCollider() {
+AABB & GameObject::GetCollider() {
 	return m_collider;
+}
+
+void GameObject::SetCollider(sf::Vector2<float> _pos, sf::Vector2<float> _radius) {
+	m_collider = AABB(_pos, _radius);
+}
+
+void GameObject::SetCollider(const sf::Sprite & _sprite) {
+	m_collider = AABB(_sprite);
+}
+
+void GameObject::SetCollider(const GameObject & _gameObject) {
+	m_collider = AABB(_gameObject);
 }
