@@ -1,9 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-// Forward decalration of player class
-class Player;
-
 /*
 Ball GameObject for use in game
 */

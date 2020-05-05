@@ -19,7 +19,7 @@ public:
 	virtual ~GameObject() {};
 
 	virtual void Update();
-	void Render(GameData& _gameData);
+	virtual void Render(GameData& _gameData);
 
 	// Setters for the GameObjects textures
 	void SetTexture(GameData& _gameData, const std::string& _filePath, bool _appendPath);

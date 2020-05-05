@@ -10,8 +10,8 @@ class Player : public GameObject {
 public:
 	Player();
 
-	void Update();
-	void Render(GameData& _gameData);
+	void Update() override;
+	void Render(GameData& _gameData) override;
 
 	// Public accessors for player speed
 	sf::Vector2<float> GetPlayerSpeed() const;

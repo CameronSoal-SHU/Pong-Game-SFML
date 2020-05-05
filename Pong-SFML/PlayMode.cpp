@@ -193,6 +193,7 @@ void PlayMode::CheckBallCollisions() {
 		}
 	}
 
+	// Has the ball collided with any players?
 	for (int i(0); i < GameConstants::MAX_PLAYERS; ++i) {
 		GameObject& playerObj = *m_gameObjects.at(i);
 		ball->GetCollider().IntersectCollider(playerObj);
@@ -201,10 +202,12 @@ void PlayMode::CheckBallCollisions() {
 		// give ball the players colour and 
 		// record which player touched the ball last
 		if (ball->GetCollider().Collision()) {
-			BounceBall();
-			// Give the balls velocity some random variation to keep gameplay less predictable
+			// How far was the ball from the centre of the player?
+			float variance = (playerObj.GetPosition().y - ball->GetPosition().y) * 5.f;
+			// Change balls Y velocity based on variance from player centre
 			ball->SetVelocity(sf::Vector2<float>(ball->GetVelocity().x,
-				ball->GetVelocity().y * RandomNumberGenerator::GenerateRandomUnsigned(1, 6) / 3));
+				ball->GetVelocity().y + variance));
+			BounceBall();
 			// Mimic players colour
 			ball->SetColour(playerObj.GetColour());
 			// Record which player touched the ball

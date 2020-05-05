@@ -20,6 +20,10 @@ How much intersection is there?
 etc.
 */
 struct Hit {
+	Hit(AABB* _ptrCollider);
+
+	bool Collision() const;			// Was there a collision?
+
 	AABB* collidedObj;				// When a collision occurs, the object collided with is stored here as copy
 									// When there is no collision, this is released and set to nullptr
 
@@ -29,8 +33,6 @@ struct Hit {
 									
 	float time;						/* Used for Segment/Sweep intersections,
 									   fraction from 0-1 for how far along the line the collision occured */
-	Hit(AABB* _ptrCollider);
-	bool Collision() const;			// Was there a collision?
 };
 
 class AABB {
@@ -38,7 +40,7 @@ public:
 	// Methods to set the collider information
 	AABB();
 	// Setup collider with a position and radius
-	AABB(sf::Vector2<float> _pos, sf::Vector2<float> _radius);
+	AABB(const sf::Vector2<float>& _pos, const sf::Vector2<float>& _radius);
 	// Set up collider with sprite information
 	AABB(const sf::Sprite& _sprite);
 	// Set up collider with gameobject information

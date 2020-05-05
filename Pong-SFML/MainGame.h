@@ -34,7 +34,7 @@ public:
 	GameData& GetGameData();
 private:
 	/* Default position for rendering digital text on screen */
-	sf::Vector2<float> defaultTxtPos { 25.f, 10.f };
+	sf::Vector2<float> m_defaultTxtPos { 25.f, 10.f };
 	GameData m_gameData;
 
 	TitleScreen m_titleScreen;

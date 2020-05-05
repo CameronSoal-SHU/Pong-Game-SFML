@@ -15,7 +15,7 @@ AABB::AABB()
 	: m_pos(0.f,0.f), m_radius(0.f,0.f), m_hit(nullptr)
 {}
 
-AABB::AABB(sf::Vector2<float> _pos, sf::Vector2<float> _radius)
+AABB::AABB(const sf::Vector2<float>& _pos, const sf::Vector2<float>& _radius)
 	: m_pos(_pos), m_radius(_radius), m_hit(nullptr)
 {}
 
